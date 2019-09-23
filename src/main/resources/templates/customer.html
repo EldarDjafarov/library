@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Library</title>
+
+</head>
+<body>
+<!--<h2>Grid View:</h2>
+<form>
+    <table>
+        <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Number of Books</th>
+        </tr>
+        </thead>
+
+        <th:block th:each="book : ${books}">
+            <td>
+                <tr th:text="${book.title}">Book Title</tr>
+                <tr th:text="${book.date}">Date</tr>
+                <tr th:each="author : ${book.authors}">
+                    <td th:text="${author.name}">Author</td>
+                </tr>
+                <tr th:each="genre : ${book.genres}">
+                    <td th:text="${genre.name}">Genre</td>
+                </tr>
+                <tr th:text="${book.numberOfBooks}">Number of Books</tr>
+            </td>
+        </th:block>
+
+
+    </table>
+</form>-->
+
+
+<div>
+    <h2> Take Book</h2>
+    <form action="#" th:action="@{/take}" method="post">
+        <label for="TakeName">Name</label>
+        <input type="text" th:field="*{customer.name}" id="TakeName" value="TakeName" placeholder="Name">
+
+        <label for="TakeTitle">Title</label>
+        <input type="text" th:field="*{book.title}" id="TakeTitle" value="TakeTitle" placeholder="Title">
+
+        <label for="TakeDate">Date</label>
+        <input type="date" th:field="*{book.date}" id="TakeDate" value="TakeDate"  placeholder="Date">
+
+        <label for="TakeAuthors">Author</label>
+        <input type="text" th:field="*{book.authors}" id="TakeAuthors" value="TakeAuthors" placeholder="Authors">
+
+
+        <input type="submit" value="Take Book">
+
+    </form>
+
+</div>
+
+<div>
+    <h2>Return Book</h2>
+    <form action="#" th:action="@{/return}" method="post">
+        <label for="customerName">Name</label>
+        <input type="text" th:field="*{customer.name}" id="customerName" value="name" placeholder="Name">
+
+        <label for="customerTitle">Title</label>
+        <input type="text" th:field="*{book.title}" id="customerTitle" value="title" placeholder="Title">
+
+        <label for="customerDate">Date</label>
+        <input type="date" th:field="*{book.date}" id="customerDate" value="date"  placeholder="Date">
+
+        <label for="customerAuthors">Author</label>
+        <input type="text" th:field="*{book.authors}" id="customerAuthors" value="authors" placeholder="Authors">
+
+
+        <input type="submit" value="Return Book">
+    </form>
+</div>
+<div>
+    <h2> Filter</h2>
+    <form action="#" th:action="@{/filter}" method="post">
+        <label for="id">Id</label>
+        <input type="number" th:field="*{book.id}" id="id" value="id" placeholder="id">
+        <label for="title">Title</label>
+        <input type="text" th:field="*{book.title}" id="title" value="title" placeholder="title">
+        <label for="date">Date</label>
+        <input type="date" th:field="*{book.date}" id="date" value="date"  placeholder="Date">
+
+        <label for="genres">Genres</label>
+        <input type="text" th:field="*{book.genres}" id="genres" value="genres" placeholder="Genres">
+       <!-- <label for="authors">Author</label>
+        <input type="text" th:field="*{author.name}" id="authors" value="authors" placeholder="Authors">
+
+
+        <label for="numberOfBooks">Number Of Books</label>
+        <input type="number" th:field="*{book.numberOfBooks}" id="numberOfBooks" value="numberOfBooks" placeholder="Number">-->
+
+        <input type="submit" value="Find Book">
+
+    </form>
+
+</div>
+
+</body>
+</html>
