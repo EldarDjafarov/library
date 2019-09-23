@@ -2,10 +2,8 @@ package library.services.genreService;
 
 import library.dao.genreDAO.IGenreRepository;
 import library.models.main.Genre;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -59,6 +57,8 @@ public class GenreService implements IGenreService {
         }
         return genres;
     }
-    }
+
+
+}
 
 

@@ -1,9 +1,7 @@
 package library.services.bookService;
 
 import library.dao.bookDAO.IBookRepository;
-import library.models.main.Author;
 import library.models.main.Book;
-import library.models.main.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +20,10 @@ public class BookService implements IBookService{
     if(bookFromDb==null){
         bookRepository.save(book);
     }
-       else if((bookFromDb!=null)&& (book.getNumberOfBooks()==0)){
+       else if(book.getNumberOfBooks()==0){
            bookFromDb.setNumberOfBooks(bookFromDb.getNumberOfBooks()+1);
             bookRepository.save(bookFromDb);
-        } else if((bookFromDb!=null)&& (book.getNumberOfBooks()>0)){
+        } else if(book.getNumberOfBooks()>0){
             book.setId(bookFromDb.getId());
         bookRepository.save(book);
 
@@ -39,8 +37,10 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public Set<Book> filter(Long id, String title, LocalDate date, Set<Genre> genres/*, Set<Author> authors, Long numberOfBooks*/) {
-        return bookRepository.findByIdOrTitleOrDateOrGenres/*OrGenresOrAuthorsOrNumberOfBooks*/(id,title, date,genres /*genres, authors,numberOfBooks*/);
+    public Set<Book> filter(Long id, String title, LocalDate date,String genres, String authors, Long numberOfBooks) {
+        return bookRepository.findByIdOrTitleOrDateOrGenresOrAuthorsOrNumberOfBooks(id,title, date,genres, authors,numberOfBooks);
     }
+
+
 
 }

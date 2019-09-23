@@ -17,4 +17,5 @@ public interface IAuthorService {
 
     Author addAuthorByName(String authorName);
     Set<Author> addAuthorsByNames(String authorsNames);
+
 }

@@ -1,17 +1,15 @@
 package library.controllers;
 
-import library.models.main.Author;
+
 import library.models.main.Book;
 import library.services.authorService.IAuthorService;
 import library.services.bookService.BookService;
-
 import library.services.genreService.IGenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +34,6 @@ public class MainController {
         List<Book> books = bookService.getAllBooks();
         modelMap.addAttribute("books", books);
         modelMap.addAttribute("book", new Book());
-        modelMap.addAttribute("author",new Author());
         return "main";
     }
     @PostMapping()
