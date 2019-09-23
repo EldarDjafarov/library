@@ -1,6 +1,8 @@
 package library.models.main;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import library.models.customer.Customer;
 
 import javax.persistence.*;
@@ -9,10 +11,13 @@ import java.util.Set;
 
 
 @Entity
+@ApiModel(description = "All details about Book. ")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(notes = "The database generated book ID")
     private Long id;
+    @ApiModelProperty(notes = "Book title")
     private String title;
     @Column(columnDefinition = "DATE")
     private LocalDate date;

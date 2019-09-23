@@ -8,36 +8,29 @@
 
 </head>
 <body>
-<!--<h2>Grid View:</h2>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<a href="/main">Main</a>
+<h2>Grid View:</h2>
 <form>
     <table>
-        <thead>
-        <tr>
-            <th>Book Title</th>
-            <th>Date</th>
-            <th>Author</th>
-            <th>Genre</th>
-            <th>Number of Books</th>
-        </tr>
-        </thead>
 
         <th:block th:each="book : ${books}">
-            <td>
-                <tr th:text="${book.title}">Book Title</tr>
-                <tr th:text="${book.date}">Date</tr>
-                <tr th:each="author : ${book.authors}">
-                    <td th:text="${author.name}">Author</td>
-                </tr>
-                <tr th:each="genre : ${book.genres}">
-                    <td th:text="${genre.name}">Genre</td>
-                </tr>
-                <tr th:text="${book.numberOfBooks}">Number of Books</tr>
-            </td>
+            <tr th:each="author : ${book.authors}">
+                <td th:text="${author.name}">Author</td>
+                <td th:text="${book.title}">Book Title></td>
+                <td th:text="${book.date}">Date</td>
+            <tr th:each="genre : ${book.genres}">
+                <td th:text="${genre.name}">Genre</td>
+                <td th:text="${book.numberOfBooks}">Number of Books</td>
         </th:block>
 
 
     </table>
-</form>-->
+</form>
 
 
 <div>

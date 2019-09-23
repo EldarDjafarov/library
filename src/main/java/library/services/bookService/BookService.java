@@ -37,8 +37,8 @@ public class BookService implements IBookService{
     }
 
     @Override
-    public Set<Book> filter(Long id, String title, LocalDate date,String genres, String authors, Long numberOfBooks) {
-        return bookRepository.findByIdOrTitleOrDateOrGenresOrAuthorsOrNumberOfBooks(id,title, date,genres, authors,numberOfBooks);
+    public Set<Book> filter(Long id, String title, LocalDate date, String genres, String authors, Long numberOfBooks) {
+        return bookRepository.findByIdOrTitleOrDateOrGenresOrAuthorsOrNumberOfBooks(id,title, date, genres, authors,numberOfBooks);
     }
 
 

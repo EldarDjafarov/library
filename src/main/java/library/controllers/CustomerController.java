@@ -1,8 +1,12 @@
 package library.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import library.models.customer.Customer;
 
+import library.models.main.Author;
 import library.models.main.Book;
+import library.models.main.Genre;
 import library.services.authorService.IAuthorService;
 import library.services.bookService.IBookService;
 import library.services.customerService.ICustomerService;
@@ -19,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-
+@Api(value="Customer Management System", description="Operations related to the receipt and return of books and filtering them")
 @Controller
 public class CustomerController {
 
@@ -30,44 +34,53 @@ public class CustomerController {
     @Autowired
     private IAuthorService authorService;
 
-
+    @ApiOperation(value = "Return current date", response = LocalDate.class)
     @ModelAttribute
     LocalDate myDate() {
         return LocalDate.now();
     }
-
-    @GetMapping()
+    @ApiOperation(value = "View list of Books")
+    @GetMapping("/")
     public String listOfAllBooks(ModelMap modelMap) {
         List<Book> books = bookService.getAllBooks();
-        modelMap.addAttribute("book", new Book());
-        modelMap.addAttribute("customer", new Customer());
+        modelMap.addAttribute("books", books);
+        modelMap.addAttribute("book",new Book());
+        modelMap.addAttribute("author",new Author());
+        modelMap.addAttribute("genre",new Genre());
+        modelMap.addAttribute("customer",new Customer());
         return "customer";
     }
-
-    @PostMapping("/take")
+    @ApiOperation(value = "Take book")
+    @PostMapping("take")
     public String takeBook(String name, String title, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate currentDate,
                            String authors) {
         customerService.takeBook(name, title, authorService.addAuthorsByNames(authors), currentDate);
         return "redirect:/";
     }
-
-    @PostMapping("/return")
+    @ApiOperation(value = "Return book")
+    @PostMapping("return")
     public String returnBook(String name, String title, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate currentDate,
                              String authors) {
         customerService.returnBook(name, title, authorService.addAuthorsByNames(authors), currentDate);
         return "redirect:/";
     }
-
-    @PostMapping("/filter")
+    @ApiOperation(value = "Filter books")
+    @PostMapping("filter")
     public String filterAll(Long id, String title, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(required = false) LocalDate date
-            , String genre, String authors, Long numberOfBooks, ModelMap modelMap) {
+            , String genres, String authors, Long numberOfBooks, ModelMap modelMap) {
 
-
-        Set<Book> books = bookService.filter(id, title, date, genre,
+        Set<Book> books = bookService.filter(id, title, date, genres,
                 authors, numberOfBooks);
 
         modelMap.addAttribute("books", books);
-        return "redirect:/";
+        modelMap.addAttribute("author",new Author());
+        modelMap.addAttribute("genre",new Genre());
+        return "filter";
+    }
+    @ApiOperation(value = "Filter Books")
+    @GetMapping("filter")
+    public String filterList() {
+        return "filter";
     }
 }
 

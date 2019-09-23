@@ -1,7 +1,9 @@
 package library.controllers;
 
 
+import library.models.main.Author;
 import library.models.main.Book;
+import library.models.main.Genre;
 import library.services.authorService.IAuthorService;
 import library.services.bookService.BookService;
 import library.services.genreService.IGenreService;
@@ -33,7 +35,10 @@ public class MainController {
     public String listOfAllBooks(ModelMap modelMap) {
         List<Book> books = bookService.getAllBooks();
         modelMap.addAttribute("books", books);
-        modelMap.addAttribute("book", new Book());
+        modelMap.addAttribute("book",new Book());
+        modelMap.addAttribute("author",new Author());
+        modelMap.addAttribute("genre",new Genre());
+
         return "main";
     }
     @PostMapping()
